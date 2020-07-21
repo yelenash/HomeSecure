@@ -1,0 +1,2 @@
+npm install
+node -r esm app.js {FILENAME}
