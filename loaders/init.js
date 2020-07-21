@@ -1,4 +1,6 @@
 import cacheLoader from "./cacheLoader";
+import UserStackApiService from '../services/apiServices/userStackApiService';
+
 
 export default class Loaders{
     constructor() {
@@ -7,6 +9,7 @@ export default class Loaders{
 
     async init(){
         this.cache = await cacheLoader();
+        this.devicesApi = new UserStackApiService();
     }
 
 }

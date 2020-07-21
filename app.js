@@ -3,21 +3,22 @@ const {Parser} = require('json2csv');
 const fs = require('fs');
 import _ from 'lodash';
 import Loaders from "./loaders/init";
-import UserStack from "./services/userStack/userStack";
+import DeviceDataService from "./services/deviceData/deviceDataService";
 
 const app = async () => {
     const startObjects = new Loaders();
     await startObjects.init()
-    const userStackService = new UserStack(startObjects.cache);
+    const deviceDataService = new DeviceDataService(startObjects.cache, startObjects.devicesApi);
     const csvArgIndex = 2;
     if (process.argv.length < csvArgIndex + 1) {
-        throw("No csv file selected")
+        console.log("No csv file selected");
+        return;
     }
     const resultsPromises = [];
     fs.createReadStream(process.argv[csvArgIndex])
         .pipe(csv())
         .on('data', (data) => {
-            resultsPromises.push(handleCsvLine(data, userStackService));
+            resultsPromises.push(handleCsvLine(data, deviceDataService));
         })
         .on('end', async () => {
             let res = await Promise.all(resultsPromises)

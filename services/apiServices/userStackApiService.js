@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {userStackApiConfig} from '../../config/config.js'
 
-export default class UserStackApi {
+export default class UserStackApiService {
     constructor() {
         this.endpoint = userStackApiConfig.endpoint;
         this.apiKey = userStackApiConfig.apiKey;

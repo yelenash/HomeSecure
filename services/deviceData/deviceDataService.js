@@ -1,9 +1,7 @@
-import UserStackApi from './userStackApi';
-
-export default class UserStack {
-    constructor(cache) {
+export default class DeviceDataService {
+    constructor(cache, apiService) {
         this.cache = cache;
-        this.apiService = new UserStackApi();
+        this.apiService = apiService;
     }
 
     async getUaDeviceData(userAgent) {
