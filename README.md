@@ -5,5 +5,5 @@
 npm install
  ``` 
  ```
-npm start
+npm start {FILE_PATH}
  ``` 
